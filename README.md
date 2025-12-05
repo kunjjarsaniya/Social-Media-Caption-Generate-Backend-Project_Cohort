@@ -91,13 +91,6 @@ Day_15_Project/
 
 **Please follow the existing code style (Prettier + ESLint) and write unit tests for new logic.**
 
-## 📄 License
-
-This project is licensed under the **MIT License** – see the `LICENSE` file for details.
-
----
-
-*Generated on 2025‑12‑05 by Antigravity – your AI coding assistant.*
 =======
 # 🚀 Social Media Caption Generator - Backend API
 
@@ -113,7 +106,6 @@ A Node.js backend application built with **Express.js** and **MongoDB**, featuri
 
 - 📁 **File Management**
   - File uploads with **Multer**
-  - Integration with **ImageKit** for media storage
 
 - 🤖 **AI Integration**
   - Integration with **Google's Generative AI**
@@ -131,7 +123,6 @@ A Node.js backend application built with **Express.js** and **MongoDB**, featuri
 - 🧩 **Framework**: Express.js  
 - 🗄️ **Database**: MongoDB + Mongoose  
 - 🔑 **Authentication**: JWT (JSON Web Tokens)  
-- 📦 **File Storage**: ImageKit  
 - 🤖 **AI**: Google's Generative AI  
 - 🌐 **Environment Management**: dotenv  
 - 🛡 **Utilities**: bcryptjs, uuid, cookie-parser  
@@ -195,9 +186,6 @@ Create a `.env` file in the root directory and include:
 ```
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
-IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
-IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
-IMAGEKIT_URL_ENDPOINT=your_imagekit_url_endpoint
 GOOGLE_AI_API_KEY=your_google_ai_api_key
 ```
 ---
@@ -252,4 +240,4 @@ GOOGLE_AI_API_KEY=your_google_ai_api_key
 - 🖼 ImageKit
 
 ---
->>>>>>> 816d65e86132025397b1586232a5cd45565018d4
+>>>>>>> 
