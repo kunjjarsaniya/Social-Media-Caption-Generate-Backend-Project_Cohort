@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+<<<<<<<
 # 📖 Detailed README
 
 ## 🚀 Project Overview
