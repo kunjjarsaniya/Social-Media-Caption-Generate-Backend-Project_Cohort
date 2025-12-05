@@ -1,20 +1,13 @@
-const ImageKit = require("imagekit");
+/* Stub storage service - no external ImageKit dependency */
 
-const imagekit = new ImageKit({
-    publicKey : process.env.IMAGEKIT_PUBLIC_KEY,
-    privateKey : process.env.IMAGEKIT_PRIVATE_KEY,
-    urlEndpoint : process.env.IMAGEKIT_URL_ENDPOINT
-});
-
-async function uploadImage(file, filename){
-    const response = await imagekit.upload({
-        file: file,
-        fileName: filename,
-        folder: "Social-Media-Cohort-Project"
-    });
-    return response.url;
+/**
+ * uploadImage stub function.
+ * Returns a placeholder URL for the uploaded file.
+ * This removes the external ImageKit dependency.
+ */
+async function uploadImage(file, filename) {
+    const placeholderUrl = `http://localhost/uploads/${filename}`;
+    return placeholderUrl;
 }
 
-module.exports = {
-    uploadImage
-}   
+module.exports = { uploadImage };   

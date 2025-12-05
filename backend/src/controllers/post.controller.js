@@ -1,22 +1,33 @@
 const postModel = require("../models/post.model")
 const { generateCaption } = require("../service/ai.service")
-const {v4: uuidv4} = require("uuid")
+const { v4: uuidv4 } = require("uuid")
 const { uploadImage } = require("../service/storage.service")
+const fs = require("fs")
 
-async function createPostController(req, res){
+async function createPostController(req, res) {
     const file = req.file
-    console.log("File received",file)
+    // console.log("File received", file)
 
-    const base64ImageFile = new Buffer.from(file.buffer).toString("base64")
+    // Check for file size (Limit to 20MB for Gemini Inline Data)
+    if (file.size > 20 * 1024 * 1024) {
+        return res.status(400).json({
+            message: "File too large. Please upload videos smaller than 20MB for this demo."
+        });
+    }
 
-    const caption = await generateCaption(base64ImageFile)
-    const result = await uploadImage(file.buffer, `${uuidv4()}`)
+    const fileBuffer = fs.readFileSync(file.path)
+    const { mode, language } = req.body;
 
-    const post = await postModel.create({
+    const [caption, result] = await Promise.all([
+        generateCaption(file.path, mode, language, file.mimetype),
+        uploadImage(fileBuffer, `${uuidv4()}`)
+    ]);
+    // Skip database save since we are in demo mode
+    const post = {
         image: result,
         caption: caption,
-        user: req.user._id
-    })
+        _id: "temp-" + Date.now()
+    }
 
     res.status(201).json({
         post

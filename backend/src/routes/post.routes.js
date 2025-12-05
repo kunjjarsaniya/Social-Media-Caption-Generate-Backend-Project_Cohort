@@ -5,12 +5,12 @@ const multer = require("multer")
 
 const router = express.Router()
 
-const upload = multer({ storage: multer.memoryStorage() })
+const upload = multer({ dest: 'uploads/' })
 
 /* POST /api/posts [protected] */
-router.post("/", 
-    authMiddleware, /* req.user = userData */
-    upload.single("image"), /* req.file = image */
+router.post("/",
+    /* authMiddleware,  req.user = userData */
+    upload.single("file"), /* req.file = file */
     createPostController
 )
 
