@@ -4,8 +4,9 @@
   --color-gray: #707070;
   --color-light-gray: #C0C0C0;
   --color-white: #FFFFFF;
-  --color-accent: #FFFFFF; /* White accent on black */
-  
+  --color-accent: #FFFFFF;
+  /* White accent on black */
+
   --font-primary: 'Montserrat', sans-serif;
   --font-secondary: 'Roboto', sans-serif;
 
@@ -63,7 +64,12 @@ button {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   line-height: 1.2;
 }
@@ -71,6 +77,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 2.5rem;
   background: linear-gradient(to right, #fff, #707070);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -93,10 +100,28 @@ h1 {
   background: var(--color-white);
 }
 
+/* Custom Text Selection - Match Theme Colors */
+::selection {
+  background: var(--color-gray);
+  color: var(--color-white);
+}
+
+::-moz-selection {
+  background: var(--color-gray);
+  color: var(--color-white);
+}
+
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {

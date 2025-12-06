@@ -37,7 +37,7 @@ const Home = () => {
         formData.append('language', language);
 
         try {
-            const response = await axios.post('/api/posts', formData, {
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/posts`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

@@ -1,255 +1,386 @@
-<<<<<<< HEAD
-# 📖 Detailed README
+# 🎨 CaptionKatha - AI-Powered Social Media Caption Generator
 
-## 🚀 Project Overview
+<div align="center">
 
-**CaptionKatha (formerly Social Media Caption Generator)** is a full‑stack web application that generates creative captions for social media posts. Users can upload images or videos, select a language and mode (e.g., **fun**, **professional**, **inspirational**), and receive AI‑generated captions along with optional voice output, hashtags, and sharing links.
+![CaptionKatha Logo](frontend/public/logo.png)
 
-The project showcases:
-- **Backend** built with Node.js, Express, and MongoDB.
-- **Frontend** using React, Vite, and modern UI/UX design.
-- **AI integration** via OpenAI (or similar) for caption generation.
-- **Media handling** (image/video upload, preview, size limits).
-- **Multilingual support** (English, Hindi, etc.).
+**Turn Photos into Stories**
 
-## 📂 Repository Structure
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://your-frontend.vercel.app)
+[![Backend API](https://img.shields.io/badge/api-running-blue)](https://your-backend.vercel.app)
+[![License](https://img.shields.io/badge/license-MIT-orange)]()
 
-```
-Day_15_Project/
-├─ backend/               # Express server, API routes, services
-│   ├─ controllers/       # Request handlers (e.g., post.controller.js)
-│   ├─ services/          # Business logic (e.g., ai.service.js)
-│   ├─ models/            # Mongoose schemas
-│   ├─ routes/            # Express routers
-│   └─ .env               # Environment variables (MongoDB URI, API keys)
-├─ frontend/              # React/Vite application
-│   ├─ src/
-│   │   ├─ components/    # UI components (UploadComponent, CaptionDisplay, …)
-│   │   ├─ pages/         # Page components (Home, Quiz, …)
-│   │   └─ App.jsx        # Root component
-│   ├─ public/            # Static assets (favicon, images)
-│   └─ index.html         # Entry HTML file (SEO meta tags live here)
-├─ README.md              # **This file** – project documentation
-└─ package.json           # Root scripts (optional monorepo setup)
-```
+*An AI-powered caption generator for Instagram, Twitter, and WhatsApp with multilingual support and culturally relevant content generation*
 
-## 🛠️ Installation & Setup
+[Live Demo](https://your-frontend.vercel.app) · [Report Bug](https://github.com/kunjjarsaniya/Social-Media-Caption-Generate--Backend-Project_Cohort/issues) · [Request Feature](https://github.com/kunjjarsaniya/Social-Media-Caption-Generate--Backend-Project_Cohort/issues)
 
-### Prerequisites
-- **Node.js** (v18 or later) & **npm**
-- **MongoDB** instance (local or Atlas)
-- **OpenAI API key** (or compatible AI service)
-
-### Steps
-1. **Clone the repository**
-   ```bash
-   git clone <repo-url>
-   cd Day_15_Project
-   ```
-2. **Backend**
-   ```bash
-   cd backend
-   npm install
-   # Create a .env file (copy from .env.example)
-   cp .env.example .env
-   # Fill in MONGODB_URI, OPENAI_API_KEY, etc.
-   npm run dev   # Starts the Express server on http://localhost:5000
-   ```
-3. **Frontend**
-   ```bash
-   cd ../frontend
-   npm install
-   npm run dev   # Vite dev server on http://localhost:3000
-   ```
-4. **Open the app**
-   Visit `http://localhost:3000` in your browser.
-
-## 📋 Usage Guide
-
-1. **Upload Media** – Click the upload button, select an image or video (max 20 MB). A preview appears.
-2. **Select Language & Mode** – Choose the desired language (English, Hindi, etc.) and caption style.
-3. **Generate Caption** – Press **Generate**. The AI processes the media and returns:
-   - Caption text
-   - Suggested hashtags
-   - Optional voice‑over (playable audio)
-4. **Share** – Use the built‑in share buttons to post directly to Instagram, Twitter, etc.
-
-### Common Commands (CLI)
-- `npm run lint` – Run ESLint for code quality.
-- `npm run test` – Execute Jest tests (if present).
-- `npm run build` – Create production bundles for deployment.
-
-## 🤝 Contributing
-
-1. Fork the repository.
-2. Create a feature branch:
-   ```bash
-   git checkout -b feature/awesome-feature
-   ```
-3. Make your changes and ensure the app still runs.
-4. Submit a pull request with a clear description of the change.
-
-**Please follow the existing code style (Prettier + ESLint) and write unit tests for new logic.**
-
-## 📄 License
-
-This project is licensed under the **MIT License** – see the `LICENSE` file for details.
+</div>
 
 ---
 
-*Generated on 2025‑12‑05 by Antigravity – your AI coding assistant.*
-=======
-# 🚀 Social Media Caption Generator - Backend API
+## 📖 Table of Contents
 
-A Node.js backend application built with **Express.js** and **MongoDB**, featuring user authentication, file uploads, and integration with **Google's Generative AI**.
+- [About](#about)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Screenshots](#screenshots)
+- [Getting Started](#getting-started)
+- [Deployment](#deployment)
+- [API Documentation](#api-documentation)
+- [Project Structure](#project-structure)
+- [Environment Variables](#environment-variables)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+---
+
+## 🌟 About
+
+**CaptionKatha** is a modern web application that leverages AI to generate engaging, culturally relevant captions for social media content. Built with the MERN stack and powered by Google's Gemini AI, it helps content creators save time while maintaining cultural authenticity in their posts.
+
+### Why CaptionKatha?
+
+- ✨ **AI-Powered**: Utilizes Google Gemini AI for intelligent caption generation
+- 🌐 **Multilingual**: Supports Hindi, Gujarati, English, and Hinglish
+- 🎭 **Multiple Modes**: Funny, Professional, Festive, and more
+- 🎨 **Beautiful UI**: Sleek black/gray/white minimalist design
+- 📱 **Responsive**: Works seamlessly on mobile, tablet, and desktop
+- 🚀 **Fast**: Optimized for performance and quick generation
 
 ---
 
 ## ✨ Features
-- 🔐 **User Authentication**
-  - JWT-based authentication
-  - Password hashing with **bcryptjs**
-  - Protected routes using middleware
 
-- 📁 **File Management**
-  - File uploads with **Multer**
-  - Integration with **ImageKit** for media storage
+### Core Functionality
+- 🖼️ **Image & Video Upload**: Drag-and-drop or click to upload
+- 🤖 **AI Caption Generation**: Powered by Google Gemini API
+- 🎨 **Multiple Modes**: 
+  - 😄 Funny (Masti) - Bollywood-style humor
+  - 💼 Professional (Vyavsay) - Business-appropriate
+  - 🎉 Festive (Tyohar) - Festival-themed
+  - 📝 More modes coming soon!
+- 🌍 **Language Support**:
+  - Hindi (हिंदी)
+  - Gujarati (ગુજરાતી)
+  - English
+  - Hinglish (Hindi + English mix)
 
-- 🤖 **AI Integration**
-  - Integration with **Google's Generative AI**
-  - AI-powered features (customize as needed)
+### UI/UX Features
+- 🎯 **Intuitive Interface**: Clean, easy-to-use design
+- 📱 **Mobile-First**: Optimized for mobile devices
+- 🌙 **Dark Theme**: eye-catching black/gray/white aesthetic
+- ⚡ **Real-time Preview**: See your caption before sharing
+- 🎬 **Smooth Animations**: Fade-in effects and transitions
+- 🖱️ **Custom Selection Color**: Gray highlight matching the theme
 
-- 🗃️ **Database**
-  - MongoDB with **Mongoose ODM**
-  - Schema-based data modeling
+### Technical Features
+- 🔐 **Secure**: Environment-based configuration
+- 🌐 **RESTful API**: Well-structured backend
+- 💾 **MongoDB**: Persistent data storage
+- 📡 **CORS Enabled**: Separate frontend/backend deployment
+- 🚀 **Vercel Ready**: Production-ready configurations
 
 ---
 
 ## 🛠️ Tech Stack
 
-- ⚙️ **Runtime**: Node.js  
-- 🧩 **Framework**: Express.js  
-- 🗄️ **Database**: MongoDB + Mongoose  
-- 🔑 **Authentication**: JWT (JSON Web Tokens)  
-- 📦 **File Storage**: ImageKit  
-- 🤖 **AI**: Google's Generative AI  
-- 🌐 **Environment Management**: dotenv  
-- 🛡 **Utilities**: bcryptjs, uuid, cookie-parser  
+### Frontend
+- ⚛️ **React 18** - UI library
+- ⚡ **Vite** - Build tool and dev server
+- 🎨 **CSS3** - Styling with custom properties
+- 📦 **Axios** - HTTP client
+- 🎭 **Lucide React** - Icon library
+
+### Backend
+- 🟢 **Node.js** - Runtime environment
+- 🚂 **Express.js** - Web framework
+- 🍃 **MongoDB** - Database
+- 🔗 **Mongoose** - ODM for MongoDB
+- 🤖 **@google/genai** - Gemini AI integration
+- 📤 **Multer** - File upload handling
+- 🔐 **JWT** - Authentication
+- 🔒 **bcryptjs** - Password hashing
+
+### Deployment & Tools
+- ▲ **Vercel** - Hosting platform
+- 🗄️ **MongoDB Atlas** - Cloud database
+- 🔧 **Git** - Version control
+- 📝 **ESLint** - Code linting
+
+---
+
+## 📸 Screenshots
+
+### Home Page
+![Homepage](docs/screenshots/homepage.png)
+*Clean, minimalist interface with upload functionality*
+
+### Caption Generation
+![Caption Generation](docs/screenshots/caption-generation.png)
+*AI-powered caption with mode and language selection*
+
+### Mobile View
+![Mobile Responsive](docs/screenshots/mobile-view.png)
+*Fully responsive design for mobile devices*
 
 ---
 
 ## 🚀 Getting Started
 
-### 📋 Prerequisites
+### Prerequisites
 
-- Node.js (v14 or higher)  
-- MongoDB (local or Atlas)  
-- npm or yarn  
+Before you begin, ensure you have:
+- Node.js (v14 or higher)
+- npm or yarn
+- MongoDB (local or Atlas account)
+- Google Gemini API key
 
-### 📦 Installation
+### Installation
 
-1. 📂 Clone the repository:
+1. **Clone the repository**
    ```bash
    git clone https://github.com/kunjjarsaniya/Social-Media-Caption-Generate--Backend-Project_Cohort.git
-   cd Day_15_Project/backend
+   cd Social-Media-Caption-Generate--Backend-Project_Cohort
    ```
-   
-2. 📥 Install dependencies:
-   ```bash
-   npm install
-   ```
-   
-3. 🔐 Set up environment variables:
-    - Copy `.env-example` to `.env`
-    - Update the environment variables with your own configuration
 
-4. 🏁 Start the development server:
+2. **Setup Backend**
    ```bash
+   cd backend
+   npm install
+   
+   # Create .env file
+   cp .env-example .env
+   # Edit .env and add your credentials
+   
    npm start
    ```
-   The server will start at: http://localhost:3000
+
+3. **Setup Frontend**
+   ```bash
+   cd frontend
+   npm install
+   
+   # Create .env file
+   echo "VITE_BACKEND_URL=http://localhost:3000" > .env
+   
+   npm run dev
+   ```
+
+4. **Open in browser**
+   - Frontend: `http://localhost:5173`
+   - Backend:  `http://localhost:3000`
+
+---
+
+## 🌐 Deployment
+
+For detailed deployment instructions, see **[DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)**
+
+### Quick Deploy to Vercel
+
+**Backend:**
+1. Push to GitHub
+2. Import in Vercel → select `backend` folder
+3. Add environment variables
+4. Deploy
+
+**Frontend:**
+1. Update `frontend/.env.production` with backend URL
+2. Import in Vercel → select `frontend` folder
+3. Add `VITE_BACKEND_URL` environment variable
+4. Deploy
+
+---
+
+## 📡 API Documentation
+
+### Base URL
+```
+Production: https://your-backend.vercel.app
+Development: http://localhost:3000
+```
+
+### Endpoints
+
+#### POST `/api/posts`
+Generate AI caption for uploaded media.
+
+**Request:**
+- Method: `POST`
+- Content-Type: `multipart/form-data`
+- Body:
+  - `file`: Image or video file
+  - `mode`: Caption mode (e.g., "Funny", "Professional")
+  - `language`: Language code (e.g., "Hindi", "English")
+
+**Response:**
+```json
+{
+  "success": true,
+  "post": {
+    "caption": "Generated caption text...",
+    "mode": "Funny",
+    "language": "Hindi"
+  }
+}
+```
+
+#### POST `/api/auth/register`
+Register a new user.
+
+**Request:**
+```json
+{
+  "email": "user@example.com",
+  "password": "securepassword",
+  "name": "User Name"
+}
+```
+
+#### POST `/api/auth/login`
+Login existing user.
+
+**Request:**
+```json
+{
+  "email": "user@example.com",
+  "password": "securepassword"
+}
+```
 
 ---
 
 ## 📁 Project Structure
+
 ```
-backend/
-├── src/
-│   ├── controllers/     # Route controllers
-│   ├── db/              # Database connection
-│   ├── middlewares/     # Custom middlewares
-│   ├── models/          # Database models
-│   ├── routes/          # API routes
-│   ├── service/         # Business logic
-│   ├── app.js           # Express app configuration
-├── .env                 # Environment variables
-├── .env-example         # Example env file
-├── package.json
-└── server.js            # Server entry point
+Day_15_Project/
+├── backend/
+│   ├── src/
+│   │   ├── controllers/     # Route controllers
+│   │   │   ├── auth.controller.js
+│   │   │   └── post.controller.js
+│   │   ├── db/              # Database connection
+│   │   │   └── db.js
+│   │   ├── middlewares/     # Custom middlewares
+│   │   │   └── auth.middleware.js
+│   │   ├── models/          # Mongoose models
+│   │   │   ├── user.model.js
+│   │   │   └── post.model.js
+│   │   ├── routes/          # API routes
+│   │   │   ├── auth.routes.js
+│   │   │   └── post.routes.js
+│   │   ├── service/         # Business logic
+│   │   │   ├── ai.service.js
+│   │   │   └── storage.service.js
+│   │   └── app.js           # Express app
+│   ├── .env                 # Environment variables
+│   ├── server.js            # Entry point
+│   ├── package.json
+│   └── vercel.json          # Vercel config
+│
+├── frontend/
+│   ├── public/
+│   │   ├── logo.png
+│   │   ├── og-image.png     # Social media preview
+│   │   └── captionkatha_favicon_white.png
+│   ├── src/
+│   │   ├── components/      # React components
+│   │   │   ├── Header.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── UploadComponent.jsx
+│   │   │   ├── ModeSelector.jsx
+│   │   │   ├── LanguageSelector.jsx
+│   │   │   └── CaptionDisplay.jsx
+│   │   ├── pages/           # Page components
+│   │   │   └── Home.jsx
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css        # Global styles
+│   ├── .env                 # Local development
+│   ├── .env.production      # Production config
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.js
+│   └── vercel.json          # Vercel config
+│
+├── DEPLOYMENT_GUIDE.md      # Deployment instructions
+├── PORTFOLIO.mdx            # Portfolio showcase
+├── SRS.md                   # Requirements specification
+├── PRD.md                   # Product requirements
+└── README.md                # This file
 ```
 
 ---
 
 ## 🔐 Environment Variables
-Create a `.env` file in the root directory and include:
+
+### Backend `.env`
+
+```plaintext
+# Database
+MONGODB_URL=mongodb+srv://user:pass@cluster.mongodb.net/captionkatha
+
+# Authentication
+JWT_SECRET=your-super-secret-jwt-key-minimum-32-chars
+
+# AI Service
+GEMINI_API_KEY=your-google-gemini-api-key
+
+# CORS - Production Frontend URL
+FRONTEND_URL=https://your-frontend.vercel.app
+
+# Optional
+PORT=3000
 ```
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
-IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
-IMAGEKIT_URL_ENDPOINT=your_imagekit_url_endpoint
-GOOGLE_AI_API_KEY=your_google_ai_api_key
+
+### Frontend `.env`
+
+```plaintext
+# Development
+VITE_BACKEND_URL=http://localhost:3000
+
+# Production (.env.production)
+VITE_BACKEND_URL=https://your-backend.vercel.app
 ```
----
-
-## 🧪 Available Scripts
-- `npm start` - Start the server
-- `npm run dev` - Start server in dev mode with nodemon (if configured)
-
----
-
-## 📡 API Endpoints
-
-### 🔐 Authentication
-- `POST /api/auth/register` - Register a new user
-- `POST /api/auth/login` - Login user
-- `GET /api/auth/profile` - Get current user profile (protected)
-
-### 📤 File Upload
-- `POST /api/upload` - Upload a file (protected)
-
-### 🤖 AI Services
-- `POST /api/ai/generate` - Generate content using Google's AI (protected)
 
 ---
 
 ## 🤝 Contributing
-1. 🍴 Fork the repository
 
-2. 🧪 Create your feature branch
-    ```bash
-    git checkout -b feature/AmazingFeature
-    ```
+Contributions are welcome! Here's how:
 
-3. 💾 Commit your changes
-    ```bash
-    git commit -m "Add some AmazingFeature"
-    ```
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-4. 🚀 Push to the branch
-    ```bash
-    git push origin feature/AmazingFeature
-    ```
+---
 
-5. 📬 Open a Pull Request
+## 👨‍💻 Contact
+
+**Kunj Jarsaniya**
+
+- GitHub: [@kunjjarsaniya](https://github.com/kunjjarsaniya)
+- Project Link: [CaptionKatha](https://github.com/kunjjarsaniya/Social-Media-Caption-Generate--Backend-Project_Cohort)
 
 ---
 
 ## 🙏 Acknowledgments
-- 💙 Express.js
-- 🍃 MongoDB
-- 🤖 Google Generative AI
-- 🖼 ImageKit
+
+- [Google Gemini AI](https://ai.google.dev/) - AI caption generation
+- [MongoDB](https://www.mongodb.com/) - Database
+- [Vercel](https://vercel.com/) - Deployment platform
+- [React](https://react.dev/) - UI library
+- [Express.js](https://expressjs.com/) - Backend framework
 
 ---
->>>>>>> 816d65e86132025397b1586232a5cd45565018d4
+
+<div align="center">
+
+**Made with ❤️ for content creators**
+
+⭐ Star this repo if you find it helpful!
+
+</div>

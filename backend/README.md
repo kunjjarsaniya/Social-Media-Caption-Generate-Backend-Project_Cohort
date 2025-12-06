@@ -5,14 +5,9 @@ A Node.js backend application built with **Express.js** and **MongoDB**, featuri
 ---
 
 ## ✨ Features
-- 🔐 **User Authentication**
-  - JWT-based authentication
-  - Password hashing with **bcryptjs**
-  - Protected routes using middleware
 
 - 📁 **File Management**
   - File uploads with **Multer**
-  - Integration with **ImageKit** for media storage
 
 - 🤖 **AI Integration**
   - Integration with **Google's Generative AI**
@@ -29,8 +24,6 @@ A Node.js backend application built with **Express.js** and **MongoDB**, featuri
 - ⚙️ **Runtime**: Node.js  
 - 🧩 **Framework**: Express.js  
 - 🗄️ **Database**: MongoDB + Mongoose  
-- 🔑 **Authentication**: JWT (JSON Web Tokens)  
-- 📦 **File Storage**: ImageKit  
 - 🤖 **AI**: Google's Generative AI  
 - 🌐 **Environment Management**: dotenv  
 - 🛡 **Utilities**: bcryptjs, uuid, cookie-parser  
@@ -94,9 +87,6 @@ Create a `.env` file in the root directory and include:
 ```
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
-IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
-IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
-IMAGEKIT_URL_ENDPOINT=your_imagekit_url_endpoint
 GOOGLE_AI_API_KEY=your_google_ai_api_key
 ```
 ---
