@@ -11,6 +11,7 @@ const app = express()
 const allowedOrigins = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
+    'https://captionkatha.vercel.app',
     process.env.FRONTEND_URL // Add your production frontend URL as environment variable
 ].filter(Boolean); // Remove undefined values
 
