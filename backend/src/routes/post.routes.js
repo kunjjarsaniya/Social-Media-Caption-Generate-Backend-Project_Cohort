@@ -5,7 +5,7 @@ const multer = require("multer")
 
 const router = express.Router()
 
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: '/tmp/uploads/' })
 
 /* POST /api/posts [protected] */
 router.post("/",
