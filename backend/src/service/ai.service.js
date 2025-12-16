@@ -85,6 +85,29 @@ async function uploadToGemini(path, mimeType) {
   }
 }
 
+// Retry helper with exponential backoff
+async function retryWithBackoff(fn, retries = 3, delay = 1000) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await fn();
+    } catch (error) {
+      const isLastRetry = i === retries - 1;
+      const isRetryableError = error?.status === 'UNAVAILABLE' ||
+        error?.code === 503 ||
+        error?.message?.includes('overloaded');
+
+      if (isLastRetry || !isRetryableError) {
+        throw error;
+      }
+
+      // Wait with exponential backoff
+      const waitTime = delay * Math.pow(2, i);
+      console.log(`Retry ${i + 1}/${retries} after ${waitTime}ms due to: ${error.message}`);
+      await new Promise(resolve => setTimeout(resolve, waitTime));
+    }
+  }
+}
+
 async function waitForFilesActive(files) {
   // console.log("Waiting for file processing...");
   for (const name of files.map((file) => file.name)) {
@@ -152,12 +175,14 @@ async function generateCaption(filePath, mode = "Funny", language = "Hindi", mim
         - Do NOT include any introductory text like "Here is a caption:". Just the caption and hashtags.
         `;
 
-      const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        contents: contents,
-        config: {
-          systemInstruction: systemInstruction,
-        },
+      const response = await retryWithBackoff(async () => {
+        return await ai.models.generateContent({
+          model: "gemini-2.5-flash",
+          contents: contents,
+          config: {
+            systemInstruction: systemInstruction,
+          },
+        });
       });
       return response.text;
     }
@@ -196,18 +221,38 @@ async function generateCaption(filePath, mode = "Funny", language = "Hindi", mim
         - Do NOT include any introductory text like "Here is a caption:". Just the caption and hashtags.
         `;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: contents,
-      config: {
-        systemInstruction: systemInstruction,
-      },
+    const response = await retryWithBackoff(async () => {
+      return await ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: contents,
+        config: {
+          systemInstruction: systemInstruction,
+        },
+      });
     });
     return response.text;
 
   } catch (error) {
-    // console.error("AI Generation failed:", error.message);
-    return `(AI Generation Failed: ${error.message}) This is a fallback caption. The AI service could not be reached. Please check your internet connection or API key. #Error #Fallback #CaptionKatha`;
+    console.error("AI Generation failed:", error);
+
+    // Provide specific error messages based on error type
+    let errorMessage = "An unexpected error occurred";
+
+    if (error?.status === 'UNAVAILABLE' || error?.code === 503) {
+      errorMessage = "The AI service is currently overloaded. Please try again in a moment.";
+    } else if (error?.code === 429) {
+      errorMessage = "Rate limit exceeded. Please wait a moment before trying again.";
+    } else if (error?.code === 400) {
+      errorMessage = "Invalid request. Please check your file format.";
+    } else if (error?.code === 401 || error?.code === 403) {
+      errorMessage = "API authentication failed. Please contact support.";
+    } else if (error?.message?.includes('API key')) {
+      errorMessage = "API key issue detected. Please contact support.";
+    } else if (error?.message) {
+      errorMessage = error.message;
+    }
+
+    return `⚠️ Caption generation in progress... ${errorMessage} #CaptionKatha #TryAgain`;
   }
 }
 
